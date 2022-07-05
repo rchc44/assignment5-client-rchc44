@@ -32,7 +32,7 @@ const AllStudentsView = (props) => {
               <Link to={`/student/${student.id}`}>
                 <h2>{name}</h2>
               </Link>
-			  <h3>Campus: {student.campus.name? student.campus.name: "Not enrolled"}</h3>
+			  <h3>Campus: {student.campus && student.campus.name ? student.campus.name: "Not enrolled"}</h3>
 			  <h3>gpa: {student.gpa? student.gpa:"No gpa"}</h3>
 			  <h3>Email: {student.email}</h3>
 			  <img src={student.imageUrl} width={250}/>
