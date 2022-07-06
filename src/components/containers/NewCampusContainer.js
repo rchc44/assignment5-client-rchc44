@@ -54,10 +54,10 @@ class NewCampusContainer extends Component {
 
     // Update state, and trigger redirect to show the new student
     this.setState({
-      name: this.state.name, 
-      imageUrl: this.state.imageUrl, 
-      address: this.state.address,
-	  description: this.state.description,
+      name: "", 
+      imageUrl: "", 
+      address: "",
+	  description: "",
       redirect: true, 
       redirectId: newCampus.id
     });
