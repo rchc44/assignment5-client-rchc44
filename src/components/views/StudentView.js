@@ -27,7 +27,11 @@ const StudentView = (props) => {
 	  <h3>{student.email}</h3>
 	  <img src={student.imageUrl} width={250}/>
 	  <br/>	  
+	  <Link to={`/editstudent/${student.id}`}>
+		<button>Edit Student Information</button>
+	  </Link>
 	  <button onClick={()=>{deleteStudent(student.id);handleRedirect();}}>Delete Student</button>
+	  
     </div>
   );
 
