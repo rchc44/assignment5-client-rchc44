@@ -24,7 +24,7 @@ const StudentView = (props) => {
 	  <h3>Last Name: {student.lastname}</h3>
       <h3>Campus: {campusViewLink}</h3>
 	  <h3>gpa: {student.gpa? student.gpa:"No gpa"}</h3>
-	  <h3>{student.email}</h3>
+	  <h3>Email: {student.email}</h3>
 	  <img src={student.imageUrl} width={250}/>
 	  <br/>	  
 	  <Link to={`/editstudent/${student.id}`}>

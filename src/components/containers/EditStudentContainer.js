@@ -41,7 +41,7 @@ class EditStudentContainer extends Component {
   }
 
   // Take action after user click the submit button
-  handleSubmit = async event => {
+  handleSubmit = async (event,studentId) => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
     let student = {
@@ -50,15 +50,15 @@ class EditStudentContainer extends Component {
 		email: this.state.email,
 		imageUrl: this.state.imageUrl,
 		gpa: this.state.gpa,		
-        campusId: this.state.campusId
+        campusId: this.state.campusId,
+		studentId: studentId
     };
 	
 	if (student["imageUrl"] == "") { // delete imageUrl property if empty, so server uses default url
 		delete student["imageUrl"]
-	}	
-    
+	}
     // Add new student in back-end database
-    let newStudent = await this.props.editStudent(student);
+    let editedStudent = await this.props.editStudent(student);
 
     // Update state, and trigger redirect to show the new student
     this.setState({
@@ -69,7 +69,7 @@ class EditStudentContainer extends Component {
 	  gpa: "",
       campusId: null, 
       redirect: true, 
-      redirectId: newStudent.id
+      redirectId: studentId
     });
   }
 
