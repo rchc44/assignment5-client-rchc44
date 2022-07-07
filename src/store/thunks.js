@@ -52,8 +52,16 @@ export const deleteCampusThunk = campusId => async dispatch => {  // The THUNK
 // THUNK CREATOR:
 export const editCampusThunk = campus => async dispatch => {  // The THUNK
   try {
+	let campusId = campus.campusId
+	delete campus.campusId
+
+	// delete all properties that won't be edited, so that we don't incorrectly update object in server
+	for (var key in campus) {
+		if (!campus[key]) delete campus[key];
+	}    
+	  
     // API "put" call to update campus (based on "id" and "campus" object's data) from database
-    let updatedCampus = await axios.put(`/api/campuses/${campus.id}`, campus); 
+    let updatedCampus = await axios.put(`/api/campuses/${campusId}`, campus); 
     // Update successful so change state with dispatch
     dispatch(ac.editCampus(updatedCampus));
   } catch(err) {
@@ -125,7 +133,8 @@ export const editStudentThunk = student => async dispatch => {  // The THUNK
 	
 	// delete all properties that won't be edited, so that we don't incorrectly update object in server
 	for (var key in student) {
-		if (!student[key]) delete student[key];
+		if (!student[key] && key!="campusId") delete student[key]; // must skip campusId because we unenroll student using campusId:null
+		// if we didn't ignore campusId, we wouldn't be able to unenroll student
 	}
 	
 	// API "put" call to update student (based on "id" and "student" object's data) from database

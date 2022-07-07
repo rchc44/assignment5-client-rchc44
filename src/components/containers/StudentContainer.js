@@ -29,7 +29,6 @@ class StudentContainer extends Component {
   
   handleRedirect = () => {
 	this.setState({redirect:true});
-	  
   }
   
   // Render Student view by passing student data as props to the corresponding View component
