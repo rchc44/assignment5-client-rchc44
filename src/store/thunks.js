@@ -133,7 +133,8 @@ export const editStudentThunk = student => async dispatch => {  // The THUNK
 	
 	// delete all properties that won't be edited, so that we don't incorrectly update object in server
 	for (var key in student) {
-		if (!student[key]) delete student[key];
+		if (!student[key] && key!="campusId") delete student[key]; // must skip campusId because we unenroll student using campusId:null
+		// if we didn't ignore campusId, we wouldn't be able to unenroll student
 	}
 	
 	// API "put" call to update student (based on "id" and "student" object's data) from database

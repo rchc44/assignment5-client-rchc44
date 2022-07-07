@@ -8,10 +8,12 @@ import { Link } from "react-router-dom";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus, deleteCampus, handleRedirect} = props;
+  const {campus, deleteCampus, handleRedirect, editStudent} = props;
   
   const noStudentsEnrolled = campus.students.length == 0;
   let studentsDisplay;
+  
+  
   if (noStudentsEnrolled) {
 	studentsDisplay = <h3>No students are currently enrolled in this Campus</h3>;
   } else {
@@ -20,12 +22,15 @@ const CampusView = (props) => {
         return (
           <div key={student.id}>
             <Link to={`/student/${student.id}`}>
-              <h2>{name}</h2>
-            </Link>             
+              <h3>{name}</h3>
+            </Link>          
+			<button onClick={(e)=>{
+			editStudent({studentId:student.id,campusId:null});
+			e.target.parentNode.style.display= "none";
+			}}>Unenroll</button>
           </div>
         );
       });
-	  
   }
   
   
@@ -42,6 +47,11 @@ const CampusView = (props) => {
 	  <button onClick={()=>{deleteCampus(campus.id);handleRedirect();}}>Delete Campus</button>
 	  	  
       {studentsDisplay}
+	  <br/>
+	  
+	  <Link to={`/enrollstudent/${campus.id}`}>
+		<button>Enroll New Student</button>
+	  </Link>
     </div>
   );
 };
