@@ -11,6 +11,7 @@ export { default as AllCampusesView } from "./AllCampusesView";
 export { default as AllStudentsView } from "./AllStudentsView";
 export { default as NewStudentView } from "./NewStudentView";
 export { default as EditStudentView } from "./EditStudentView";
+export { default as EditCampusView } from "./EditCampusView";
 export { default as CampusView } from "./CampusView";
 export { default as StudentView } from "./StudentView";
 export { default as HomePageView } from "./HomePageView";

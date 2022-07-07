@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus} = props;
+  const {campus, deleteCampus, handleRedirect} = props;
   
   const noStudentsEnrolled = campus.students.length == 0;
   let studentsDisplay;
@@ -36,6 +36,11 @@ const CampusView = (props) => {
       <p>{campus.address}</p>
 	  <img src={campus.imageUrl} width={350} />
       <p>{campus.description}</p>
+	  <Link to={`/editcampus/${campus.id}`}>
+		<button>Edit Campus Information</button>
+	  </Link>
+	  <button onClick={()=>{deleteCampus(campus.id);handleRedirect();}}>Delete Campus</button>
+	  	  
       {studentsDisplay}
     </div>
   );
